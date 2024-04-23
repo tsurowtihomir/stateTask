@@ -6,7 +6,6 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-// Middleware to set CORS headers
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', '*');

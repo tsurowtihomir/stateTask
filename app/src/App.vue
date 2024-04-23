@@ -12,7 +12,7 @@ export default {
     return {
       buttonText: 'Not Pressed',
       isPressed: false,
-      socket: null // Initialize socket to null
+      socket: null
     };
   },
   methods: {
@@ -22,7 +22,6 @@ export default {
       this.emitStateChange();
     },
     emitStateChange() {
-      // Check if this.socket is defined before calling emit
       if (this.socket) {
         this.socket.emit('buttonStateChange', this.isPressed);
       } else {
@@ -31,11 +30,7 @@ export default {
     }
   },
   mounted() {
-    // Assign this.socket to the result of io() when component is mounted
     this.socket = io('http://localhost:3000', { transports : ['websocket'] });
-
-
-    // Handle socket event only if this.socket is defined
     if (this.socket) {
     this.socket.on('buttonStateChange', (state) => {
       this.isPressed = state;
@@ -47,5 +42,4 @@ export default {
 </script>
 
 <style>
-/* Add your CSS styles here */
 </style>
