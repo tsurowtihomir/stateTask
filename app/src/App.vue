@@ -30,13 +30,15 @@ export default {
     }
   },
   mounted() {
-    this.socket = io('http://localhost:3000', { transports : ['websocket'] });
+    this.socket = io('http://localhost:3000', { transports: ['websocket'] });
     if (this.socket) {
-    this.socket.on('buttonStateChange', (state) => {
-      this.isPressed = state;
-      this.buttonText = state ? 'Pressed' : 'Not Pressed';
-    });
-  }
+      this.socket.on('buttonStateChange', (state) => {
+        this.isPressed = state;
+        this.buttonText = state ? 'Pressed' : 'Not Pressed';
+      });
+    } else {
+      console.error('Socket connection failed');
+    }
   }
 };
 </script>
